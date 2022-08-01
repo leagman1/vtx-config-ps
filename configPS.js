@@ -52,6 +52,12 @@ function parseConfigString(configString){
                 setting.value = settingRaw[1];
 
                 setting.type = getSettingType(setting.value);
+
+                console.log("Setting: " + settingRaw + ", setting type = " + setting.type);
+
+                if(setting.type == "RGB" || setting.type == "RGBa"){
+                    setting.value = parseRGBa(setting.value);
+                }
             }
 
             category.settings.push(setting);
@@ -73,7 +79,15 @@ function serialiseToConfigString(settings){
         settingsString += "[" + category.name + "]\n";
 
         category.settings.forEach(function stringifySettings(setting){
-            settingsString += setting.name + "=" + setting.value + "\n";
+            settingsString += setting.name;
+
+            if(setting.type == "RGBa"){
+                settingsString += "=" + serialiseRGBa(setting.value);
+            } else {
+                settingsString += "=" + setting.value;
+            }
+
+            settingString +=  "\n";
         })
 
         settingsString += "\n"; // for readability
@@ -128,11 +142,39 @@ function getSettingType(value){
         return "RGB";
     }
 
-    if(/\(R=\d{1,3},G=\d{1,3},B=\d{1,3},[aA]=\d{1,3}\)/.test(value)){
+    if(/\(R=\d{1,3},G=\d{1,3},B=\d{1,3},A=\d{1,3}\)/.test(value)){
         return "RGBa";
     }
 
     return "string";
+}
+
+function parseRGBa(configValue){
+    configValue = configValue.replace("(", "").replace(")", "");
+
+    var returnObject = {};
+
+    configValue = configValue.split(",");
+    for(let colorValue of configValue){
+        colorValue = colorValue.split("=");
+        returnObject[colorValue[0].toLowerCase()] = Number(colorValue[1]);
+    };
+
+    return returnObject;
+}
+
+function serialiseRGBa(objRGBa){
+    var returnString = "(";
+
+    returnString += `R=${objRGBa.r},G=${objRGBa.g},B=${objRGBa.b}`;
+
+    if(objRGBa.a){
+        returnString += `,A=${objRGBa.a}`;
+    }
+
+    returnString += ")";
+
+    return returnString;
 }
 
 function psLog(msg){
