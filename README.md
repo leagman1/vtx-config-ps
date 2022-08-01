@@ -39,5 +39,7 @@ app.get("/controlPanel", (req, res) => {
 app.post("/saveToFile", (req, res) => {
     var settings = JSON.parse(req.XYZ); // retrieve JSON from request
     configPS.writeConfigString("C:\\Vertex\\Server\\MCS\\Saved\\Config\\WindowsServer\\Game.ini", settings);
+
+    // ...
 });
 ```
