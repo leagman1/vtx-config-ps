@@ -24,3 +24,8 @@ JSON-conversion or writing to file is not provided.
 
 ## Example
 
+```js
+function kek(){
+    var x = "lel";
+}
+```
