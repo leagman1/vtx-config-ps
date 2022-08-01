@@ -7,9 +7,20 @@ After reading in a file or string it can serialise the object back to a string a
 
 ## Usage
 
+Require the file inside your JavaScript project and call the functions listed below.
+
+## Functionality
 There are the following functions:
 
-* parseConfigFile
-* parseConfigString
-* serialiseToConfigString
-* writeConfigString
+* parseConfigFile (Path: filePath) => Array
+* parseConfigString (String: configString) => Array
+* serialiseToConfigString (Object: settings) => String
+* writeConfigString (Path: path, Object: settings) => Boolean
+
+Currently it's very rudimentary. It's expected you do any necessary checks and formatting of paths and so on.
+The main functions are `parseConfigFile` and `writeConfigString`. The other two are for convenience.
+
+JSON-conversion or writing to file is not provided.
+
+## Example
+
