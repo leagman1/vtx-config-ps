@@ -34,7 +34,6 @@ Example category structure:
 }
 ```
 
-The display name is provided for front end use.
 Each settings array holds a number of settings objects of the following form:
 ```json
 {
@@ -45,7 +44,7 @@ Each settings array holds a number of settings objects of the following form:
 }
 ```
 
-The display name splits camel case words and removes underscores.
+The display name splits camel case words and removes underscores from the name property.     
 Each settings has a type property. The type property defines which type of value the value property will have.
 Similar to the display name property, the type is provided for front end use with forms.
 
