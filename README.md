@@ -34,27 +34,28 @@ Example category structure:
 }
 ```
 
+The display name is provided for front end use.
 Each settings array holds a number of settings objects of the following form:
 ```json
 {
     "displayName": "Example Property XDD",
     "name": "ExampleProperty_XDD",
     "value": "<value>",
-    "type": 
+    "type": "<type>"
 }
 ```
 
 The display name splits camel case words and removes underscores.
 Each settings has a type property. The type property defines which type of value the value property will have.
-Similar to the display name property, the type is to ease possible development of front end forms.
+Similar to the display name property, the type is provided for front end use with forms.
 
 The programm currently distinguishes between six value types:
-* boolean: indicates a string of either "True" or "False"
-* number: indicates a string that holds an integer or a floating point number
-* string: indicates either a regular string or a data type that isn't currently being recognised
-* undefined: indicates an empty string
-* RGB: indicates an RGB object (see below)
-* RGBa: indicates an RGBa object (see below)
+* boolean:      indicates a string of either "True" or "False"
+* number:       indicates a string that holds an integer or a floating point number
+* string:       indicates either a regular string or a data type that isn't currently being recognised
+* undefined:    indicates an empty string
+* RGB:          indicates an RGB object (see below)
+* RGBa:         indicates an RGBa object (see below)
 
 ### RGB and RGBa objects
 
