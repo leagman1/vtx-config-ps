@@ -1,6 +1,15 @@
+# Vertex Config Parser and Serialiser
+
 Parser and serialiser for Vertex config files.
-Reads a config file and parses it to a js object. Serialises the object back to config format.
 
-* Usage
+The programm reads in a file or a string that follows the UE4 config format and returns it as a JavaScript object.
+After reading in a file or string it can serialise the object back to a string and/or write it to a file directly.
 
-** Functions
+## Usage
+
+There are the following functions:
+
+* parseConfigFile
+* parseConfigString
+* serialiseToConfigString
+* writeConfigString
