@@ -7,7 +7,7 @@ After reading in a file or string it can serialise the object back to a string a
 
 ## Usage
 
-Require the file inside your JavaScript project and call the functions listed below.
+Require the file "configPS.js" inside your JavaScript project and call the functions listed below on it.
 
 ## Functionality
 There are the following functions:
