@@ -23,7 +23,7 @@ The main functions are `parseConfigFile` and `writeConfigString`. The other two 
 JSON-conversion or writing JSON to file is not provided.
 
 `parseConfigFile` takes a path to a file as an argument and returns an array of setting categories as parsed sequentially.    
-Each category has a display name, a name and an array of settings belonging to the category. The display name is provided for use with websites.
+Each category has a display name, a name and an array of settings belonging to the category. The display name is provided for front end use.
 
 Example category structure:
 ```json
@@ -58,7 +58,7 @@ The programm currently distinguishes between six value types:
 
 ### RGB and RGBa objects
 
-When a setting has the type of "RGB" or "RGBa", the value will be an object that holds the respective RGB/RGBa values as properties:
+When a setting has a type of "RGB" or "RGBa", the value will be an object that holds the respective RGB/RGBa values as properties:
 ```json
 {
     "r": 200,
