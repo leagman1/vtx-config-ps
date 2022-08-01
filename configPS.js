@@ -6,18 +6,18 @@ module.exports = {
     writeConfigString: writeConfigString,
 };
 
-const path = require("path");
-
 const {readFileSync, writeFileSync} = require("fs");
 
 function parseConfigFile(filePath){
-    var configString = readSettingsFile(filePath).match(/\[[a-zA-Z]*\]|.*=.*/g);
+    var configString = readSettingsFile(filePath);
 
     return parseConfigString(configString);
 }
 
 function parseConfigString(configString){
     psLog("Parsing settings file to an object.");
+
+    configString = configString.match(/\[[a-zA-Z]*\]|.*=.*/g); // split the config string into individual lines
 
     var regXCategory = /\[[a-zA-Z]*\]/;
 
