@@ -17,12 +17,12 @@ There are the following functions:
 * serialiseToConfigString (Object: settings) => String
 * writeConfigString (Path: path, Object: settings) => Boolean
 
-Currently it's very rudimentary. It's expected you do any necessary checks and formatting of paths and so on.
+Currently it's very rudimentary. It's expected you do any necessary checks and formatting of paths and so on.    
 The main functions are `parseConfigFile` and `writeConfigString`. The other two are for convenience.
 
 JSON-conversion or writing JSON to file is not provided.
 
-`parseConfigFile` takes a path to a file as an argument and returns an array of setting categories as parsed sequentially.
+`parseConfigFile` takes a path to a file as an argument and returns an array of setting categories as parsed sequentially.    
 Each category has a display name, a name and an array of settings belonging to the category. The display name is provided for use with websites.
 
 Example category structure:
@@ -45,7 +45,7 @@ Each settings array holds a number of settings objects of the following form:
 ```
 
 The display name splits camel case words and removes underscores from the name property.     
-Each settings has a type property. The type property defines which type of value the value property will have.
+Each settings has a type property. The type property defines which type of value the value property will have.    
 Similar to the display name property, the type is provided for front end use with forms.
 
 The programm currently distinguishes between six value types:
