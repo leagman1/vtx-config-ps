@@ -118,7 +118,35 @@ function writeSettingsFile(path, data){
 }
 
 function getSettingDisplayName(settingNameRaw){
-    return settingNameRaw.split(/(?=[A-Z])/).join(" ");
+    var sourceString = settingNameRaw.split("");
+    var targetString = "";
+
+    for(var i = 0; i< sourceString.length; i++){
+        if(sourceString[i] == "_"){
+            targetString += " ";
+            continue;
+        }
+
+        if(/[a-z]/.test(sourceString[i])){
+            targetString += sourceString[i];
+        } else {
+            if(/[A-Z]/.test(sourceString[i])){
+                if(i == 0){
+                    targetString += sourceString[i];
+                } else {
+                    if(sourceString[i + 1] && /[a-z]/.test(sourceString[i + 1])){
+                        targetString += " " + sourceString[i];
+                    } else if (/[a-z]/.test(sourceString[i - 1])) {
+                        targetString += " " + sourceString[i];
+                    } else {
+                        targetString += sourceString[i];
+                    }
+                }
+            }
+        }
+    }
+    
+    return targetString;
 }
 
 function getSettingType(value){
