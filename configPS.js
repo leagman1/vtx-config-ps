@@ -33,16 +33,21 @@ function parseConfigString(configString){
         } else {
             let setting = {};
 
-            if(currentLine.match(/=/g).length == 5){
-                // it's the team mode RGBA color setting
+            if(currentLine.match(/=/g).length == 4 || currentLine.match(/=/g).length == 5){
+                // it's RGB or RGBa
                 let settingRaw = currentLine.split("=");
 
-                setting.displayName = "";
+                setting.displayName = getSettingDisplayName(settingRaw[0]);
                 setting.name = settingRaw[0];
 
                 settingRaw.shift();
+                setting.value = parseRGBa(settingRaw.join("="));
 
-                setting.value = settingRaw.join("=");
+                if(setting.value.a){
+                    setting.type = "RGBa";
+                } else {
+                    setting.type = "RGB";
+                }
             } else {
                 // it's a regular setting
                 let settingRaw = currentLine.split("=");
@@ -52,12 +57,6 @@ function parseConfigString(configString){
                 setting.value = settingRaw[1];
 
                 setting.type = getSettingType(setting.value);
-
-                console.log("Setting: " + settingRaw + ", setting type = " + setting.type);
-
-                if(setting.type == "RGB" || setting.type == "RGBa"){
-                    setting.value = parseRGBa(setting.value);
-                }
             }
 
             category.settings.push(setting);
@@ -81,13 +80,13 @@ function serialiseToConfigString(settings){
         category.settings.forEach(function stringifySettings(setting){
             settingsString += setting.name;
 
-            if(setting.type == "RGBa"){
+            if(setting.type == "RGB" || setting.type == "RGBa"){
                 settingsString += "=" + serialiseRGBa(setting.value);
             } else {
                 settingsString += "=" + setting.value;
             }
 
-            settingString +=  "\n";
+            settingsString +=  "\n";
         })
 
         settingsString += "\n"; // for readability
