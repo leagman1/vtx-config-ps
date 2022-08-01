@@ -24,8 +24,20 @@ JSON-conversion or writing to file is not provided.
 
 ## Example
 
+Example code from a fictive nodejs app, for example a Vertex server control panel.
+
 ```js
-function kek(){
-    var x = "lel";
-}
+var configPS = require("./configPS.js");
+
+app.get("/controlPanel", (req, res) => {
+    var serverSettings = configPS.parseConfigFile("C:\\Vertex\\Server\\MCS\\Saved\\Config\\WindowsServer\\Game.ini");
+
+    res.render(/* some server side render logic, that uses the settings */);
+});
+
+
+app.post("/saveToFile", (req, res) => {
+    var settings = JSON.parse(req.XYZ); // retrieve JSON from request
+    configPS.writeConfigString("C:\\Vertex\\Server\\MCS\\Saved\\Config\\WindowsServer\\Game.ini", settings);
+});
 ```
