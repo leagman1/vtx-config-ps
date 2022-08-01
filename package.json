@@ -1,0 +1,19 @@
+{
+  "name": "vtx-config-ps",
+  "version": "1.0.0",
+  "description": "A simple config parser and serialiser for Vertex.",
+  "main": "configPS.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leagman1/vtx-config-ps.git"
+  },
+  "author": "leagman1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leagman1/vtx-config-ps/issues"
+  },
+  "homepage": "https://github.com/leagman1/vtx-config-ps#readme"
+}
