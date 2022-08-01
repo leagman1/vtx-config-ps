@@ -128,8 +128,8 @@ function getSettingType(value){
         return "RGB";
     }
 
-    if(/\(R=\d{1,3},G=\d{1,3},B=\d{1,3}\),A=\d{1,3}/.test(value)){
-        return "RGBA";
+    if(/\(R=\d{1,3},G=\d{1,3},B=\d{1,3},[aA]=\d{1,3}\)/.test(value)){
+        return "RGBa";
     }
 
     return "string";
