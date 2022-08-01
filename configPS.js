@@ -31,7 +31,6 @@ function parseConfigString(configString){
 
             var category = {displayName: getSettingDisplayName(currentLine), name: currentLine, settings: []};
         } else {
-
             let setting = {};
 
             if(currentLine.match(/=/g).length == 5){
@@ -110,20 +109,30 @@ function getSettingDisplayName(settingNameRaw){
 }
 
 function getSettingType(value){
+    if(value.length == 0){
+        return "undefined";
+    }
+
     if(value == "True" || value == "False"){
         return "boolean";
     }
 
-    /** future use
     numberValue = Number(value);
     numberValue = !Number.isNaN(numberValue);
 
     if(numberValue){
         return "number";
     }
-    */
 
-    return false;
+    if(/\(R=\d{1,3},G=\d{1,3},B=\d{1,3}\)/.test(value)){
+        return "RGB";
+    }
+
+    if(/\(R=\d{1,3},G=\d{1,3},B=\d{1,3}\),A=\d{1,3}/.test(value)){
+        return "RGBA";
+    }
+
+    return "string";
 }
 
 function psLog(msg){
